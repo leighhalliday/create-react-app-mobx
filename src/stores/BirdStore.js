@@ -4,7 +4,19 @@
 // computed: for derived/calculated values from existing state
 import { observable, action, computed } from 'mobx';
 
-class BirdStore {}
+class BirdStore {
+  @observable birds = [];
+
+  @action
+  addBird = bird => {
+    this.birds.push(bird);
+  };
+
+  @computed
+  get birdCount() {
+    return this.birds.length;
+  }
+}
 
 // We want a single instance of our store app-wide
 const singleton = new BirdStore();
